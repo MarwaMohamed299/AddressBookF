@@ -1,1 +1,33 @@
-<p>register works!</p>
+<!-- Registration Form -->
+    <form [formGroup]="userRegisterForm" >
+      <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" id="registerName" class="form-control" placeholder="Enter your name" formControlName="userName">
+          <div *ngIf="userRegisterForm.controls['userName'].invalid && (userRegisterForm.controls['userName'].dirty || userRegisterForm.controls['userName'].touched)"class="text-danger">
+          Name Is Required or Not Correct</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email"  formControlName="Email">
+        <div *ngIf="userRegisterForm.controls['Email'].invalid && (userRegisterForm.controls['Email'].dirty||userRegisterForm.controls['Email'].touched)" class="text-danger">
+          Email Is Required</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" id="registerPassword" class="form-control" placeholder="Create a password" formControlName="Password" >
+        <div *ngIf="userRegisterForm.controls['Password'].invalid && (userRegisterForm.controls['Password'].dirty||userRegisterForm.controls['Password'].touched)" class="text-danger" >
+          Password is required or Not Correct
+       </div>
+      </div>
+
+
+      <button type="submit"  [disabled]="!userRegisterForm.valid" (click)="onSubmit()" class="btn btn-primary m-1">Register</button>
+    </form>
+  <hr>
+  <div class="text-danger">
+    <div>
+      {{userRegisterForm.value |json }}
+    </div>
+  </div>

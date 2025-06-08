@@ -3,16 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Components/AuthModule/login/login.component';
 import { RegisterComponent } from './Components/AuthModule/register/register.component';
 import { UserDetailsComponent } from './Components/AuthModule/user-details/user-details.component';
-const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+import { HttpClientModule } from '@angular/common/http';
+import { authGuard } from './Components/AuthModule/Guard/auth.guard';
+
+export const routes: Routes = [
+
+{ path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { 
-    path: 'register', component : RegisterComponent},
-    
-  
-  { 
-    path: 'user-details', component: UserDetailsComponent
-  },
+  { path: 'register', component: RegisterComponent },
+  { path: 'user-details', component: UserDetailsComponent, canActivate: [authGuard] },
   {
     path: 'departments',
     loadChildren: () => 
@@ -23,14 +22,14 @@ const routes: Routes = [
   {
     path: 'jobs',
     loadChildren: () => 
-      import('./Components/jobs-module/jobs-module.module').then(
+      import('./Components/jobsModule/jobs-module.module').then(
         m => m.JobsModuleModule
       )
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes) ,],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

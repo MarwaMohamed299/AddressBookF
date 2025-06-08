@@ -1,1 +1,34 @@
-<p>login works!</p>
+  <div *ngIf="userLogInForm;">
+ <div class="container-fluid mt-5 w-50" >
+    <h1 class="fs-5 p-3">Login</h1>
+
+ <!-- Login Form -->
+    <form [formGroup]="userLogInForm">
+
+
+      <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" formControlName="Email">
+
+         <div *ngIf="userLogInForm.controls['Email'].invalid && (userLogInForm.controls['Email'].dirty||userLogInForm.controls['Email'].touched)" class="text-danger">
+          Email Is Required</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" formControlName="Password">
+
+        <div *ngIf="userLogInForm.controls['Password'].invalid && (userLogInForm.controls['Password'].dirty||userLogInForm.controls['Password'].touched)" class="text-danger" >
+           Password is required or Not Correct
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn  m-1" [disabled]="!userLogInForm.valid" (click)="onSubmit($event)">Login</button>
+    </form>
+  <hr>
+    <div class="text-danger">
+      <div>
+        {{userLogInForm.value |json }}
+      </div>
+    </div>
