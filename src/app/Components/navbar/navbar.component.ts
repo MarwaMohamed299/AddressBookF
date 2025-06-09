@@ -22,6 +22,5 @@ ngOnInit(): void {
   this.authService.isLoggedIn$.subscribe((IsLoggedIn)=>
   this.NavBarisLoggedIn =IsLoggedIn
   )
-
 }
 }
