@@ -10,6 +10,7 @@ import { GetDepartmentsComponent } from './Components/Departments/get-department
 import { EditDepartmentComponent } from './Components/Departments/edit-department/edit-department.component';
 import { AddJobComponent } from './Components/Jobs/add-job/add-job.component';
 import { EditJobComponent } from './Components/Jobs/edit-job/edit-job.component';
+import { GetJobsComponent } from './Components/Jobs/get-jobs/get-jobs.component';
 
 export const routes: Routes = [
 
@@ -21,7 +22,7 @@ export const routes: Routes = [
   { path: 'get-departments', component:GetDepartmentsComponent},
   { path: 'edit-department/:id', component:EditDepartmentComponent},
   { path: 'add-job', component:AddJobComponent},
-  { path: 'get-job', component:AddJobComponent},
+  { path: 'get-jobs', component:GetJobsComponent},
   { path: 'edit-job/:id', component:EditJobComponent},
 ];
 
