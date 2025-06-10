@@ -15,29 +15,7 @@ export class AddDepartmentComponent {
   @Output() cancel = new EventEmitter<void>();
 
    isVisible = false;
-  
-//   public get isVisible() {
-//     return this._isVisible;
-//   }
-//   public set isVisible(value) {
-//     this._isVisible = value;
-//   }
-//   newDepartment = { name: '' };
 
-//   open() {
-//     this.isVisible = true;
-//     this.newDepartment.name = '';
-//   }
-
-//   close() {
-//     this.isVisible = false;
-//     this.cancel.emit();
-//   }
-
-// onSubmit() {
-//   this.save.emit(this.newDepartment); 
-//   this.isVisible = false;
-// }
 
   open(department: any) {
     this.department = { ...department };

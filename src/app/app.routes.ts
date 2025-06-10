@@ -11,6 +11,7 @@ import { EditDepartmentComponent } from './Components/Departments/edit-departmen
 import { AddJobComponent } from './Components/Jobs/add-job/add-job.component';
 import { EditJobComponent } from './Components/Jobs/edit-job/edit-job.component';
 import { GetJobsComponent } from './Components/Jobs/get-jobs/get-jobs.component';
+import { GetAddressComponent } from './Components/addressesBook/get-address/get-address.component';
 
 export const routes: Routes = [
 
@@ -18,12 +19,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user-details', component: UserDetailsComponent, canActivate: [authGuard] },
-  { path: 'add-department', component:AddDepartmentComponent},
   { path: 'get-departments', component:GetDepartmentsComponent},
-  { path: 'edit-department/:id', component:EditDepartmentComponent},
-  { path: 'add-job', component:AddJobComponent},
   { path: 'get-jobs', component:GetJobsComponent},
-  { path: 'edit-job/:id', component:EditJobComponent},
+    { path: 'get-addresses', component:GetAddressComponent},
+
 ];
 
 @NgModule({
