@@ -1,0 +1,51 @@
+<div class="container">
+  <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="search-form">
+    <div class="form-grid">
+      <input type="text" [(ngModel)]="searchCriteria.fullName" name="fullName" placeholder="Full Name" class="form-input">
+     <input type="text" [(ngModel)]="searchCriteria.age" name="age" placeholder="age" class="form-input">
+      <input type="text" [(ngModel)]="searchCriteria.email" name="email" placeholder="email" class="form-input">
+      <input type="text" [(ngModel)]="searchCriteria.mobileNumber" name="mobileNumber" placeholder="Mobile Number" class="form-input">
+      <input type="date" [(ngModel)]="searchCriteria.fromDate" name="fromDate" placeholder="From Birth Date" class="form-input">
+      <input type="date" [(ngModel)]="searchCriteria.toDate" name="toDate" placeholder="To Birth Date" class="form-input">
+      <select [(ngModel)]="searchCriteria.jobId" name="jobId" class="form-select">
+        <option value="">All Jobs</option>
+        <option *ngFor="let job of jobs" [value]="job.id">{{ job.name }}</option>
+      </select>
+      <select [(ngModel)]="searchCriteria.departmentId" name="departmentId" class="form-select">
+        <option value="">All Departments</option>
+        <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+      </select>
+      <button type="submit" class="search-button">Search</button>
+    </div>
+  </form>
+
+  <div class="result-container">
+    <table *ngIf="addresses.length > 0" class="result-table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Job</th>
+          <th>Department</th>
+          <th>Date of Birth</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let address of addresses">
+          <td>{{ address.fullName }}</td>
+          <td>{{ address.mobileNumber }}</td>
+          <td>{{ address.email }}</td>
+          <td>{{ address.jobName }}</td>
+          <td>{{ address.departmentName }}</td>
+          <td>{{ address.dateOfBirth }}</td>
+          <td>{{ address.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="addresses.length === 0" class="no-results">No results found.</p>
+  </div>
+</div>
+<br><br><br>
+<br><br><br>

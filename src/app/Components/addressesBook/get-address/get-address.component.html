@@ -1,43 +1,50 @@
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="mb-0">Address Book</h2>
-    <button class="btn btn-primary" (click)="openAddModal()">
-      Add Address
-    </button>
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+    <h2 class="mb-2 mb-md-0">Addresses</h2>
+    <div class="d-flex gap-2">
+      <button class="btn btn-secondary" routerLink="/addresses-search">Search</button>
+      <button class="btn btn-primary" (click)="openAddModal()">Add Address</button>
+      <button class="btn btn-success" (click)="exportToExcel()">Export To Excel</button>
+
+    </div>
   </div>
 
-  <table class="table table-striped table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th>Job</th>
-        <th>Department</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let address of addresses">
-        <td>{{ address.fullName }}</td>
-        <td>{{ address.email }}</td>
-        <td>{{ address.mobileNumber }}</td>
-        <td>{{ getJobName(address.jobId) }}</td>
-        <td>{{ getDepartmentName(address.departmentId) }}</td>
-        <td>
-          <button class="btn btn-warning btn-sm" (click)="editAddress(address)">
-            Edit
-          </button>
-          <button class="btn btn-danger btn-sm ms-2" 
-                  (click)="selectAddress(address)"
-                  data-bs-toggle="modal" 
-                  data-bs-target="#deleteModal">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Job</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let address of addresses">
+          <td>{{ address.fullName }}</td>
+          <td>{{ address.email }}</td>
+          <td>{{ address.mobileNumber }}</td>
+          <td>{{ getJobName(address.jobId) }}</td>
+          <td>{{ getDepartmentName(address.departmentId) }}</td>
+          <td>
+            <div class="d-flex flex-wrap gap-1">
+              <button class="btn btn-warning btn-sm" (click)="editAddress(address)">
+                Edit
+              </button>
+              <button class="btn btn-danger btn-sm"
+                      (click)="selectAddress(address)"
+                      data-bs-toggle="modal" 
+                      data-bs-target="#deleteModal">
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- Delete Modal -->
@@ -55,10 +62,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancel
         </button>
-        <button type="button" 
-                class="btn btn-danger" 
-                (click)="confirmDelete()"
-                data-bs-dismiss="modal">
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()" data-bs-dismiss="modal">
           Delete
         </button>
       </div>
@@ -66,6 +70,8 @@
   </div>
 </div>
 
+<br><br><br>
+<br><br><br>
 <app-edit-address
   [jobs]="jobs"
   [departments]="departments"
@@ -79,3 +85,4 @@
   (save)="onAddressAdd($event)"
   (cancel)="addModal.close()">
 </app-add-address>
+

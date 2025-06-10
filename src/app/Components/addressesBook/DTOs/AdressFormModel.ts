@@ -1,11 +1,12 @@
-export class AdressEditDto {
-  id: string = '';
+export class AdressFormModel {
+  id?: string;
   mobileNumber: string = '';
   dateOfBirth: Date = new Date();
   fullName: string = '';
   address: string = '';
   email: string = '';
-  photoPath: string = '';
+  jobId: string = '';
   departmentId: string = '';
-  jobId: string = ';';
+  photoPath: string = '';
+  photoFile?: File;
 }

@@ -15,12 +15,12 @@ import { AdressEditDto } from '../DTOs/AddressEditDto';
 export class EditAddressComponent {
   @Input() jobs: any[] = [];
   @Input() departments: any[] = [];
-  @Output() save = new EventEmitter<AdressReadDto>();
+  @Output() save = new EventEmitter<{ address: AdressReadDto; photoFile?: File }>();
   @Output() cancel = new EventEmitter<void>();
-  
+
   isVisible = false;
   newAddress: AdressReadDto = {
-    id:'',
+    id: '',
     mobileNumber: '',
     dateOfBirth: new Date(),
     fullName: '',
@@ -31,21 +31,28 @@ export class EditAddressComponent {
     departmentId: '',
   };
 
-open(address: AdressReadDto) {  
-  this.newAddress = { ...address };  
-  this.isVisible = true;
-}
+  photoFile?: File;
 
+  open(address: AdressReadDto) {
+    this.newAddress = { ...address };
+    this.photoFile = undefined;
+    this.isVisible = true;
+  }
 
   close() {
     this.isVisible = false;
     this.cancel.emit();
   }
 
-  onSubmit() {
-    this.save.emit(this.newAddress);
-    this.isVisible = false;
+  onFileSelected(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      this.photoFile = event.target.files[0];
+    }
   }
 
+  onSubmit() {
+    this.save.emit({ address: this.newAddress, photoFile: this.photoFile });
+    this.isVisible = false;
+  }
   
 }

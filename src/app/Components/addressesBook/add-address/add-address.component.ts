@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AdressAddDto } from '../DTOs/AddressAddDto';
+import { AdressFormModel } from '../DTOs/AdressFormModel';
+
+type NewType = AdressFormModel;
 
 @Component({
   selector: 'app-add-address',
@@ -13,22 +15,18 @@ import { AdressAddDto } from '../DTOs/AddressAddDto';
 export class AddAddressComponent {
  @Input() jobs: any[] = [];
   @Input() departments: any[] = [];
-  @Output() save = new EventEmitter<AdressAddDto>();
+  @Output() save = new EventEmitter<AdressFormModel>();
   @Output() cancel = new EventEmitter<void>();
   @ViewChild(AddAddressComponent) addModal!: AddAddressComponent;
 
   isVisible = false;
-  newAddress: AdressAddDto = {
-    mobileNumber: '',
-    dateOfBirth: new Date(),
-    fullName: '',
-    address: '',
-    email: '',
-    photoPath: '',
-    jobId: '',
-    departmentId: '',
-  };
+  newAddress: NewType = new AdressFormModel();
+todayString: string = '';
 
+ngOnInit(): void {
+  const today = new Date();
+  this.todayString = today.toISOString().split('T')[0];
+}
   open() {
     this.isVisible = true;
     this.resetForm();
@@ -40,20 +38,19 @@ export class AddAddressComponent {
   }
 
   onSubmit() {
+    console.log('Submitting:', this.newAddress);
     this.save.emit(this.newAddress);
     this.isVisible = false;
   }
 
+  onPhotoSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.newAddress.photoFile = file;
+    }
+  }
+
   private resetForm() {
-    this.newAddress = {
-      mobileNumber: '',
-      dateOfBirth: new Date(),
-      fullName: '',
-      address: '',
-      email: '',
-      photoPath: '',
-      jobId: '',
-      departmentId: '',
-    };
+    this.newAddress = new AdressFormModel();
   }
 }

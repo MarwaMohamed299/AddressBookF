@@ -1,4 +1,3 @@
-<!-- add-address.component.html -->
 <div class="modal-backdrop" *ngIf="isVisible">
   <div class="modal-container">
     <div class="modal-header">
@@ -7,34 +6,81 @@
     <div class="modal-body">
       <div class="form-group">
         <label>Full Name</label>
-        <input type="text" class="form-control" [(ngModel)]="newAddress.fullName">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="newAddress.fullName"
+        />
       </div>
+
       <div class="form-group">
         <label>Email</label>
-        <input type="email" class="form-control" [(ngModel)]="newAddress.email">
+        <input
+          type="email"
+          class="form-control"
+          [(ngModel)]="newAddress.email"
+        />
       </div>
+
       <div class="form-group">
         <label>Mobile Number</label>
-        <input type="tel" class="form-control" [(ngModel)]="newAddress.mobileNumber">
+        <input
+          type="tel"
+          class="form-control"
+          [(ngModel)]="newAddress.mobileNumber"
+        />
       </div>
+
       <div class="form-group">
         <label>Address</label>
-        <input type="Address" class="form-control" [(ngModel)]="newAddress.address">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="newAddress.address"
+        />
       </div>
+
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="newAddress.dateOfBirth"
+          [max]="todayString"
+        />
+      </div>
+
       <div class="form-group">
         <label>Job</label>
         <select class="form-select" [(ngModel)]="newAddress.jobId">
-          <option *ngFor="let job of jobs" [value]="job.id">{{ job.name }}</option>
+          <option *ngFor="let job of jobs" [value]="job.id">
+            {{ job.name }}
+          </option>
         </select>
       </div>
+
       <div class="form-group">
         <label>Department</label>
         <select class="form-select" [(ngModel)]="newAddress.departmentId">
-          <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
+          <option
+            *ngFor="let department of departments"
+            [value]="department.id"
+          >
+            {{ department.name }}
+          </option>
         </select>
       </div>
-      <!-- Add other fields similarly -->
+
+      <div class="form-group">
+        <label>Photo</label>
+        <input
+          type="file"
+          class="form-control"
+          (change)="onPhotoSelected($event)"
+        />
+      </div>
     </div>
+
     <div class="modal-footer">
       <button class="btn btn-secondary" (click)="close()">Cancel</button>
       <button class="btn btn-primary" (click)="onSubmit()">Save</button>

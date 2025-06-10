@@ -5,14 +5,15 @@ import { DepartmentsService } from '../../Departments/departments.service';
 import { JobsService } from '../../Jobs/jobs.service';
 import { AddressesService } from '../addresses.service';
 import { CommonModule } from '@angular/common';
-import { AdressEditDto } from '../DTOs/AddressEditDto';
 import { AdressAddDto } from '../DTOs/AddressAddDto';
 import { AdressReadDto } from '../DTOs/AddressReadDto';
+import { AdressFormModel } from '../DTOs/AdressFormModel';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-get-address',
   standalone: true,
-  imports: [EditAddressComponent,AddAddressComponent,CommonModule],
+  imports: [EditAddressComponent,AddAddressComponent,CommonModule,RouterModule],
   templateUrl: './get-address.component.html',
   styleUrl: './get-address.component.css'
 })
@@ -77,23 +78,22 @@ editAddress(address: AdressReadDto): void {
   this.editModal.open(address);
 }
 
-onAddressUpdate(updatedAddress: AdressReadDto): void {
-  const editDto: AdressEditDto = {
-    id: updatedAddress.id,
-    mobileNumber: updatedAddress.mobileNumber,
-    dateOfBirth: updatedAddress.dateOfBirth,
-    fullName: updatedAddress.fullName,
-    address: updatedAddress.address,
-    email: updatedAddress.email,
-    photoPath: updatedAddress.photoPath,
-    jobId: updatedAddress.jobId,
-    departmentId: updatedAddress.departmentId
+onAddressUpdate(data: { address: AdressReadDto; photoFile?: File }): void {
+  const editDto: AdressFormModel = {
+    id: data.address.id,
+    mobileNumber: data.address.mobileNumber,
+    dateOfBirth: data.address.dateOfBirth,
+    fullName: data.address.fullName,
+    address: data.address.address,
+    email: data.address.email,
+    photoPath: data.address.photoPath,
+    jobId: data.address.jobId,
+    departmentId: data.address.departmentId
   };
-  
-  this.addressService.updateAddress(updatedAddress.id, editDto)
+
+  this.addressService.updateAddress(editDto)
     .subscribe(() => this.loadAddresses());
 }
-
 
 confirmDelete(): void {
   this.addressService.deleteAddress(this.selectedAddress.id)
@@ -121,6 +121,9 @@ getDefaultAddress(): AdressReadDto {
     jobId: '',
     departmentId: ''
   };
+}
+exportToExcel(): void {
+  this.addressService.exportToExcel();
 }
 
 }

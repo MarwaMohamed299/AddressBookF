@@ -5,6 +5,6 @@ export class AdressAddDto {
   address: string = '';
   email: string = '';
   photoPath: string = '';
-  jobId: string = '';
-  departmentId: string = '';
+  departmentId: string='';
+  jobId: string='';
 }

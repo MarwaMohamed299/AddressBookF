@@ -12,6 +12,7 @@ import { AddJobComponent } from './Components/Jobs/add-job/add-job.component';
 import { EditJobComponent } from './Components/Jobs/edit-job/edit-job.component';
 import { GetJobsComponent } from './Components/Jobs/get-jobs/get-jobs.component';
 import { GetAddressComponent } from './Components/addressesBook/get-address/get-address.component';
+import { AddressSearchComponent } from './Components/addressesBook/address-search/address-search.component';
 
 export const routes: Routes = [
 
@@ -21,7 +22,9 @@ export const routes: Routes = [
   { path: 'user-details', component: UserDetailsComponent, canActivate: [authGuard] },
   { path: 'get-departments', component:GetDepartmentsComponent},
   { path: 'get-jobs', component:GetJobsComponent},
-    { path: 'get-addresses', component:GetAddressComponent},
+  { path: 'get-addresses', component:GetAddressComponent},
+    { path: 'addresses-search', component:AddressSearchComponent},
+
 
 ];
 
