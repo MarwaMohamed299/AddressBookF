@@ -10,13 +10,17 @@ import { GetUserDetailsDto } from '../AuthDTOs/GetUserDetailsDTO';
   providedIn: 'root',
 })
 export class AuthServiceService {
-  public isLoggedIn$ = new BehaviorSubject<boolean>(false);
-  private apiUrl = 'http://localhost:5053/api/Users';
+  public isLoggedIn$ = new BehaviorSubject<boolean>(false); 
 
-  constructor(private client: HttpClient) {}
+constructor(private client: HttpClient) { }
 
-  public login(credentials: LogInDto): Observable<TokenDTO> {
-    return this.client.post<TokenDTO>(this.apiUrl, credentials).pipe(
+
+    public login(credentials: LogInDto): Observable<TokenDTO> {
+    return this.client.post<TokenDTO>(
+      'http://localhost:5053/api/Users/Login',
+      credentials
+    )
+    .pipe(
       tap((TokenDto) => {
         this.isLoggedIn$.next(true);
         localStorage.setItem('token', TokenDto.token);
@@ -24,11 +28,12 @@ export class AuthServiceService {
     );
   }
 
-  public register(credentials: RegisterDto) {
-    return this.client.post(this.apiUrl, credentials);
-  }
+  public register(credentials:RegisterDto){
+  return this.client.post(`http://localhost:5053/api/Users/Register`,credentials)
+ }
 
-  public GetUserDetails(): Observable<GetUserDetailsDto> {
-    return this.client.get<GetUserDetailsDto>(this.apiUrl);
-  }
+  public GetUserDetails () : Observable<GetUserDetailsDto>
+{
+  return this.client.get<GetUserDetailsDto>('http://localhost:5053/api/Users/UserDetails');
+}
 }

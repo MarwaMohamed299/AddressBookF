@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSearch()" #searchForm="ngForm" class="search-form">
     <div class="form-grid">
       <input type="text" [(ngModel)]="searchCriteria.fullName" name="fullName" placeholder="Full Name" class="form-input">
-     <input type="text" [(ngModel)]="searchCriteria.age" name="age" placeholder="age" class="form-input">
+      <input type="text" [(ngModel)]="searchCriteria.age" name="age" placeholder="age" class="form-input">
       <input type="text" [(ngModel)]="searchCriteria.email" name="email" placeholder="email" class="form-input">
       <input type="text" [(ngModel)]="searchCriteria.mobileNumber" name="mobileNumber" placeholder="Mobile Number" class="form-input">
       <input type="date" [(ngModel)]="searchCriteria.fromDate" name="fromDate" placeholder="From Birth Date" class="form-input">
