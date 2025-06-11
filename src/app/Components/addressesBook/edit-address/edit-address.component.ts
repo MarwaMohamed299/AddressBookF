@@ -17,7 +17,7 @@ export class EditAddressComponent {
   @Input() departments: any[] = [];
   @Output() save = new EventEmitter<{ address: AdressReadDto; photoFile?: File }>();
   @Output() cancel = new EventEmitter<void>();
-
+  todayString: string = '';
   isVisible = false;
   newAddress: AdressReadDto = {
     id: '',
@@ -45,10 +45,11 @@ export class EditAddressComponent {
   }
 
   onFileSelected(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      this.photoFile = event.target.files[0];
-    }
+  if (event.target.files && event.target.files.length > 0) {
+    this.photoFile = event.target.files[0]; 
   }
+}
+
 
   onSubmit() {
     this.save.emit({ address: this.newAddress, photoFile: this.photoFile });

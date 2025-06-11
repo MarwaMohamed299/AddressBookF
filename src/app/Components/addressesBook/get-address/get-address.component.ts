@@ -88,7 +88,8 @@ onAddressUpdate(data: { address: AdressReadDto; photoFile?: File }): void {
     email: data.address.email,
     photoPath: data.address.photoPath,
     jobId: data.address.jobId,
-    departmentId: data.address.departmentId
+    departmentId: data.address.departmentId,
+    photoFile: data.photoFile
   };
 
   this.addressService.updateAddress(editDto)

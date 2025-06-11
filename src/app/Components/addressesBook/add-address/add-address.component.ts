@@ -21,7 +21,7 @@ export class AddAddressComponent {
 
   isVisible = false;
   newAddress: NewType = new AdressFormModel();
-todayString: string = '';
+  todayString: string = '';
 
 ngOnInit(): void {
   const today = new Date();
