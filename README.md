@@ -1,27 +1,77 @@
-# BookAddressF
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.19.
+# 📚 Book Address Frontend
 
-## Development server
+This is the **Angular 18** frontend of the Book Address system. The project is built with a scalable **feature-based folder structure**, designed to handle CRUD operations and secure user interactions.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 1. Clone the Repository
 
-## Build
+git clone https://github.com/MarwaMohamed299/AddressBookF
+cd book-address-f
+2. Install Dependencies
+Make sure you have Node.js and Angular CLI installed, then run:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+bash
+Copy
+Edit
+npm install
+3. Run the Application
+bash
+Copy
+Edit
+npm start
+The application will be served at:
+🔗 http://localhost:4200/
 
-## Running unit tests
+🛡️ Security
+JWT Authentication is integrated to protect routes and user data.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+A route guard is implemented to prevent access to secured pages {user details ] unless the user is authenticated (logged in).
 
-## Running end-to-end tests
+Users can only view and access their private data.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+✨ Features
+🔐 JWT Authentication Integration
 
-## Further help
+Only authenticated users can access secure routes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Login is required to interact with private data
+
+🧱 Feature-Based Folder Structure
+
+Each domain (e.g., Address, Job, Department , Auth ) is structured into its own feature module
+
+🧩 CRUD Operations
+
+Full Create, Read, Update, Delete support for:
+
+Address
+
+Job
+
+Department
+
+🧾 Forms with Validations
+
+Email field validation (must be valid format)
+
+Phone number validation (must match phone pattern)
+
+📦 Popup Dialogs for All Actions
+
+Add Address / Job / Department
+
+Edit existing entries
+
+Confirm Delete
+
+🔍 Search Functionality
+
+Users can search using all available fields in Address
+
+🎨 Bootstrap 5 Styling
+
+Clean and responsive UI using Bootstrap classes
