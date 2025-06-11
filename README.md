@@ -1,5 +1,5 @@
 
-# 📚 Book Address Frontend
+# 📚 Adress Book Frontend
 
 This is the **Angular 18** frontend of the Book Address system. The project is built with a scalable **feature-based folder structure**, designed to handle CRUD operations and secure user interactions.
 
